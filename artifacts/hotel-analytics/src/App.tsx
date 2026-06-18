@@ -1,41 +1,25 @@
-import { Switch, Route, Router as WouterRouter } from "wouter";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
-
-const queryClient = new QueryClient();
-
-function Home() {
-  return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-gray-900">Replit Agent is building...</h1>
-        <p className="mt-2 text-sm text-gray-600">Your app will appear here once it's ready.</p>
-      </div>
-    </div>
-  );
-}
-
-function Router() {
-  return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
+import { useEffect } from "react";
+import ChatPanel from "./components/ChatPanel";
+import AnalyticsHub from "./components/AnalyticsHub";
+import ActivityPanel from "./components/ActivityPanel";
 
 function App() {
+  useEffect(() => {
+    document.documentElement.classList.add("dark");
+  }, []);
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <div className="flex h-screen w-full overflow-hidden bg-background text-foreground font-sans">
+      <div className="w-[280px] shrink-0 border-r border-border h-full flex flex-col overflow-hidden bg-card">
+        <ChatPanel />
+      </div>
+      <div className="flex-1 h-full flex flex-col overflow-hidden">
+        <AnalyticsHub />
+      </div>
+      <div className="w-[320px] shrink-0 border-l border-border h-full flex flex-col overflow-hidden bg-card">
+        <ActivityPanel />
+      </div>
+    </div>
   );
 }
 
