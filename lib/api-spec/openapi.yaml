@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: weather
+    description: Weather MCP proxy (stdio)
 paths:
   /healthz:
     get:
@@ -24,6 +26,77 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /weather/current:
+    get:
+      operationId: getWeatherCurrent
+      tags: [weather]
+      summary: Current weather via Weather MCP
+      parameters:
+        - in: query
+          name: latitude
+          required: true
+          schema: { type: number, minimum: -90, maximum: 90 }
+        - in: query
+          name: longitude
+          required: true
+          schema: { type: number, minimum: -180, maximum: 180 }
+      responses:
+        "200":
+          description: MCP tool result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/McpToolResult"
+  /weather/daily:
+    get:
+      operationId: getWeatherDaily
+      tags: [weather]
+      summary: Daily forecast via Weather MCP
+      parameters:
+        - in: query
+          name: latitude
+          required: true
+          schema: { type: number, minimum: -90, maximum: 90 }
+        - in: query
+          name: longitude
+          required: true
+          schema: { type: number, minimum: -180, maximum: 180 }
+        - in: query
+          name: days
+          required: false
+          schema: { type: integer, minimum: 1, maximum: 16, default: 7 }
+      responses:
+        "200":
+          description: MCP tool result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/McpToolResult"
+  /weather/hourly:
+    get:
+      operationId: getWeatherHourly
+      tags: [weather]
+      summary: Hourly forecast via Weather MCP
+      parameters:
+        - in: query
+          name: latitude
+          required: true
+          schema: { type: number, minimum: -90, maximum: 90 }
+        - in: query
+          name: longitude
+          required: true
+          schema: { type: number, minimum: -180, maximum: 180 }
+        - in: query
+          name: days
+          required: false
+          schema: { type: integer, minimum: 1, maximum: 7, default: 2 }
+      responses:
+        "200":
+          description: MCP tool result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/McpToolResult"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +106,17 @@ components:
           type: string
       required:
         - status
+    McpToolResult:
+      type: object
+      properties:
+        isError:
+          type: boolean
+        content:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+      required:
+        - isError
+        - content
 
