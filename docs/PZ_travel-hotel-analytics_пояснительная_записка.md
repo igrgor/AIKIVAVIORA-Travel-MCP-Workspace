@@ -32,7 +32,16 @@
 ### 1.3. Место в экосистеме AIKIVAVIORA
 
 Путь: `02modules/travel/AIKIVAVIORA_Travel_MCP_Workspace/`  
-Связь: параллельно `02modules/research/` (крипто-MCP, часть 1 ДЗ-1).
+Связь: параллельно `02modules/research/` (крипто-MCP, часть 1 ДЗ-1, с Replit URL).
+
+### 1.4. Почему GitHub, а не Replit
+
+1. **Replit** — использован для первичной сборки UI Shell (v1.0); результат сохранён в `Hotel-Insight-Hub.zip`.
+2. **Лимит Replit** — после сдачи части 1 (крипта) оставшийся API/Agent quota направлен на приоритетные задачи; повторный Publish отелей не выполнялся.
+3. **Cursor (локально)** — фазы 1–3 (watchlist, отчёты, сравнение, Weather MCP, UX-метки) сделаны вне Replit; код выгружен в **GitHub** как единственный актуальный источник.
+4. **Для сдачи** — вместо `.replit.app` указываем **GitHub** + архив + скрины с `localhost:5173`.
+
+**GitHub:** https://github.com/igrgor/AIKIVAVIORA-Travel-MCP-Workspace
 
 ---
 
@@ -62,7 +71,7 @@
 | API | Express 5, TypeScript |
 | MCP | Weather — stdio subprocess |
 | Данные отелей | Демо-каталог 24 объекта; STR 847 — целевой объём |
-| Deploy | Replit (архив) + локальная разработка Cursor |
+| Deploy | Архив Replit v1.0 + **GitHub** (актуально) + локальный запуск |
 
 ---
 
@@ -99,7 +108,7 @@
 - KPI, журнал, источники данных — **демонстрационные** (не ошибка системы).
 - Чат использует локальный ассистент по демо-данным, не внешний LLM.
 - Отчёты хранятся только в браузере до подключения БД.
-- Replit-деплой в архиве; актуальная доработка — локально в Cursor.
+- Replit-деплой **не актуален**: v1.0 UI Shell — в `Hotel-Insight-Hub.zip`; доработки v1.1 — только GitHub и локальный запуск (см. §1.4).
 
 ---
 
@@ -107,10 +116,11 @@
 
 | Ресурс | URL / путь |
 |--------|------------|
-| GitHub | https://github.com/igrgor/AIKIVAVIORA-Travel-MCP-Workspace |
+| **GitHub (актуальный код)** | https://github.com/igrgor/AIKIVAVIORA-Travel-MCP-Workspace |
+| Replit (live URL) | *отсутствует — см. §1.4* |
 | Отчёт для сдачи | `PZ_travel-hotel-analytics_отчёт_для_сдачи.md` |
 | Weather MCP | `docs/WEATHER_MCP.md` |
-| Архив Replit | `Hotel-Insight-Hub.zip` |
+| Архив Replit v1.0 | `Hotel-Insight-Hub.zip` |
 
 ---
 

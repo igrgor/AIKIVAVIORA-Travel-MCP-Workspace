@@ -8,8 +8,23 @@
 **Дата сдачи:** 18.06.2026  
 **Уровень:** вариант «под себя» (отельная аналитика вместо авиа/Kiwi+Trivago)  
 **GitHub:** https://github.com/igrgor/AIKIVAVIORA-Travel-MCP-Workspace  
+**Replit (публично):** *нет активной ссылки — см. раздел 2*  
 **Пояснительная записка:** `PZ_travel-hotel-analytics_пояснительная_записка.md`  
-**Архив Replit:** `Hotel-Insight-Hub.zip` (папка сдачи)
+**Архив Replit (v1.0 UI Shell):** `Hotel-Insight-Hub.zip` (папка сдачи)
+
+---
+
+## 2. Где проект и почему нет ссылки на Replit
+
+| Вопрос | Ответ |
+|--------|--------|
+| **Где актуальная версия?** | **GitHub** — https://github.com/igrgor/AIKIVAVIORA-Travel-MCP-Workspace (ветка `main`, коммит с watchlist, отчётами, Weather MCP) |
+| **Была ли версия на Replit?** | Да. Replit Agent собрал **UI Shell MVP** (Hotel Analytics Pro). Проект выгружен в архив `Hotel-Insight-Hub.zip` и приложен к сдаче. |
+| **Почему нет URL `.replit.app`?** | Публичный деплой Replit для этой части ДЗ **не продлевался**: лимит Replit Agent/API был израсходован на часть 1 (крипто-MCP); часть 2 (отели) дорабатывалась **локально в Cursor**, а не через новый Publish на Replit. |
+| **Как проверить работу?** | Клонировать репозиторий с GitHub → `pnpm install` → api-server `:3001` + hotel-analytics `:5173`. Скриншоты в отчёте сняты с **локального запуска**. |
+| **Чем заменяем ссылку Replit для сдачи?** | **GitHub** (исходники + история) + **архив Replit** (исходный UI Shell) + **скриншоты** + **docx-отчёт**. |
+
+> **Итог для проверяющего:** часть 1 ДЗ (крипта) сдана с Replit URL; часть 2 (отели) — с **GitHub** как основной точкой доступа, потому что актуальный код после доработок опубликован там, а не на Replit.
 
 ---
 
@@ -153,12 +168,14 @@ pnpm --filter @workspace/hotel-analytics run dev  # :5173
 
 | Пункт | Статус |
 |-------|--------|
-| Ссылка / архив проекта | ✅ GitHub + `Hotel-Insight-Hub.zip` |
+| **GitHub (основная ссылка)** | ✅ https://github.com/igrgor/AIKIVAVIORA-Travel-MCP-Workspace |
+| Архив Replit v1.0 | ✅ `Hotel-Insight-Hub.zip` |
+| Публичный URL Replit | ❌ нет — см. раздел 2 (лимит + доработка в Cursor) |
 | 2–3 тест-сценария | ✅ см. раздел 4 |
-| Скриншоты | ✅ в Word-отчёте |
+| Скриншоты (локальный запуск) | ✅ в Word-отчёте |
 | Пояснительная записка | ✅ отдельный файл |
 | Фирменный бланк AIKIVAVIORA | ✅ в docx |
-| Секреты не в документах | ✅ токены только в Replit Secrets |
+| Секреты не в документах | ✅ |
 
 ---
 
@@ -166,9 +183,11 @@ pnpm --filter @workspace/hotel-analytics run dev  # :5173
 
 | Ресурс | URL |
 |--------|-----|
-| GitHub | https://github.com/igrgor/AIKIVAVIORA-Travel-MCP-Workspace |
+| **GitHub (актуальный код)** | https://github.com/igrgor/AIKIVAVIORA-Travel-MCP-Workspace |
+| Replit (live) | *не публикуется — раздел 2 отчёта* |
 | ПЗ | `PZ_travel-hotel-analytics_пояснительная_записка.md` |
 | Weather MCP | `docs/WEATHER_MCP.md` |
+| Архив Replit v1.0 | `Hotel-Insight-Hub.zip` |
 
 ---
 

@@ -165,7 +165,20 @@ def build_pz() -> Path:
             ("Проект:", "AIKIVAVIORA Travel MCP Workspace — Hotel Analytics Pro"),
             ("Дата:", "18.06.2026"),
             ("GitHub:", "https://github.com/igrgor/AIKIVAVIORA-Travel-MCP-Workspace"),
-            ("Версия:", "v1.1 — Replit UI Shell + доработки Cursor"),
+            ("Replit (URL):", "нет — см. раздел «Почему не Replit»"),
+            ("Версия:", "v1.1 — Replit UI Shell (архив) + доработки Cursor → GitHub"),
+        ],
+    )
+
+    doc.add_heading("Почему GitHub, а не Replit", level=1)
+    add_bullets(
+        doc,
+        [
+            "Replit Agent собрал UI Shell v1.0; архив: Hotel-Insight-Hub.zip.",
+            "Лимит Replit API/Agent израсходован на часть 1 ДЗ (крипто); повторный Publish отелей не выполнялся.",
+            "Доработки v1.1 (watchlist, отчёты, Weather MCP) — в Cursor, код на GitHub.",
+            "Скриншоты сняты с локального запуска (localhost:5173).",
+            "Для сдачи: GitHub + архив + скрины вместо .replit.app.",
         ],
     )
 
@@ -205,8 +218,8 @@ def build_pz() -> Path:
 
     doc.add_heading("4. Ограничения", level=1)
     doc.add_paragraph(
-        "KPI, журнал и источники данных — демо. Это отмечено в интерфейсе "
-        "бейджами, чтобы не воспринимать как сбой. Replit-архив: Hotel-Insight-Hub.zip."
+        "KPI, журнал и источники данных — демо (бейджи в UI). "
+        "Публичного Replit URL нет: актуальный код — на GitHub; v1.0 UI Shell — в Hotel-Insight-Hub.zip."
     )
 
     out = EXPORTS / "PZ_travel-hotel-analytics_пояснительная_записка.docx"
@@ -225,6 +238,7 @@ def build_report(screens: dict[str, Path]) -> Path:
             ("Проект:", "Hotel Analytics Pro (Travel MCP)"),
             ("Дата:", "18.06.2026"),
             ("GitHub:", "https://github.com/igrgor/AIKIVAVIORA-Travel-MCP-Workspace"),
+            ("Replit (URL):", "нет — см. раздел 2"),
             ("Часть ДЗ:", "2 — отели (вариант «под себя»)"),
         ],
     )
@@ -236,7 +250,23 @@ def build_report(screens: dict[str, Path]) -> Path:
         "сохранение отчётов."
     )
 
-    doc.add_heading("2. Реализованный функционал", level=1)
+    doc.add_heading("2. Где проект и почему нет ссылки на Replit", level=1)
+    add_table(
+        doc,
+        ["Вопрос", "Ответ"],
+        [
+            ("Где актуальный код?", "GitHub — github.com/igrgor/AIKIVAVIORA-Travel-MCP-Workspace"),
+            ("Была ли версия на Replit?", "Да, UI Shell v1.0 → архив Hotel-Insight-Hub.zip"),
+            ("Почему нет .replit.app?", "Лимит Replit после части 1; доработки в Cursor, без нового Publish"),
+            ("Как проверить?", "git clone → pnpm install → :3001 + :5173; скрины — локальный запуск"),
+            ("Чем заменяем Replit URL?", "GitHub + архив + скриншоты в отчёте"),
+        ],
+    )
+    doc.add_paragraph(
+        "Часть 1 ДЗ (крипта) сдана с Replit URL. Часть 2 (отели) — с GitHub как основной ссылкой."
+    )
+
+    doc.add_heading("3. Реализованный функционал", level=1)
     add_table(
         doc,
         ["Блок", "Описание"],
@@ -250,7 +280,7 @@ def build_report(screens: dict[str, Path]) -> Path:
         ],
     )
 
-    doc.add_heading("3. Тест-сценарии", level=1)
+    doc.add_heading("4. Тест-сценарии", level=1)
 
     doc.add_heading("Сценарий 1 — Интерфейс и каталог", level=2)
     add_table(
@@ -289,11 +319,11 @@ def build_report(screens: dict[str, Path]) -> Path:
     for key, cap in zip(REPORT_NAMES[3:5], REPORT_CAPTIONS[3:5]):
         add_image_if_exists(doc, screens.get(key, Path()), cap)
 
-    doc.add_heading("4. Скрины процесса", level=1)
+    doc.add_heading("5. Скрины процесса", level=1)
     for key, cap in zip([REPORT_NAMES[0], REPORT_NAMES[5]], [REPORT_CAPTIONS[0], REPORT_CAPTIONS[5]]):
         add_image_if_exists(doc, screens.get(key, Path()), cap)
 
-    doc.add_heading("5. В разработке (не баг)", level=1)
+    doc.add_heading("6. В разработке (не баг)", level=1)
     add_bullets(
         doc,
         [
@@ -305,14 +335,16 @@ def build_report(screens: dict[str, Path]) -> Path:
         ],
     )
 
-    doc.add_heading("6. Чеклист сдачи", level=1)
+    doc.add_heading("7. Чеклист сдачи", level=1)
     add_table(
         doc,
         ["Пункт", "Статус"],
         [
-            ("GitHub / архив", "✅"),
+            ("GitHub (основная ссылка)", "✅"),
+            ("Архив Replit v1.0", "✅ Hotel-Insight-Hub.zip"),
+            ("Публичный URL Replit", "❌ нет — раздел 2"),
             ("2–3 теста", "✅"),
-            ("Скриншоты", "✅"),
+            ("Скриншоты (локально)", "✅"),
             ("ПЗ", "✅"),
             ("Бланк AIKIVAVIORA", "✅"),
         ],
