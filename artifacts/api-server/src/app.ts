@@ -31,4 +31,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", router);
 
+app.get("/", (_req, res) => {
+  res.json({
+    name: "AIKIVAVIORA Travel API",
+    health: "/api/healthz",
+    weather: "/api/weather/current",
+  });
+});
+
 export default app;

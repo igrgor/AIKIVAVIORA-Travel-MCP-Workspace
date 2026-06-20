@@ -27,6 +27,7 @@ function childEnv(): Record<string, string> {
 
   const env: Record<string, string> = {
     LOG_LEVEL: "1",
+    ENABLED_TOOLS: process.env.WEATHER_ENABLED_TOOLS ?? "standard,+historical",
   };
 
   for (const key of keep) {
@@ -106,5 +107,19 @@ export async function getHourlyForecast(
     longitude,
     days,
     granularity: "hourly",
+  });
+}
+
+export async function getHistoricalWeather(
+  latitude: number,
+  longitude: number,
+  startDate: string,
+  endDate: string,
+) {
+  return callWeatherTool("get_historical_weather", {
+    latitude,
+    longitude,
+    start_date: startDate,
+    end_date: endDate,
   });
 }

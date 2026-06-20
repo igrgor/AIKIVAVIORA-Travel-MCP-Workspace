@@ -5,6 +5,7 @@ import {
   getDailyForecast,
   getHourlyForecast,
 } from "../lib/mcp/weatherClient";
+import { buildTemperatureTimeline } from "../lib/weatherTimeline";
 import { logger } from "../lib/logger";
 
 const router: IRouter = Router();
@@ -85,6 +86,25 @@ router.get("/weather/hourly", async (req, res) => {
   } catch (err) {
     logger.error({ err }, "Weather MCP hourly forecast failed");
     res.status(502).json({ error: "Weather MCP request failed" });
+  }
+});
+
+router.get("/weather/timeline", async (req, res) => {
+  const parsed = coordinatesSchema.safeParse(req.query);
+  if (!parsed.success) {
+    res.status(400).json({ error: parsed.error.flatten() });
+    return;
+  }
+
+  try {
+    const timeline = await buildTemperatureTimeline(
+      parsed.data.latitude,
+      parsed.data.longitude,
+    );
+    res.json(timeline);
+  } catch (err) {
+    logger.error({ err }, "Weather MCP timeline failed");
+    res.status(502).json({ error: "Weather MCP timeline failed" });
   }
 });
 
